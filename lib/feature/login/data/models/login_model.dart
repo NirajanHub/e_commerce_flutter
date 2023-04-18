@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:e_commerce/feature/login/domain/entities/login_request_entity.dart';
@@ -39,8 +40,53 @@ class LoginRequestModel extends LoginRequestEntity {
   bool get stringify => true;
 }
 
-class LoginResponseModel extends LoginResponse{
+class LoginResponseModel extends LoginResponse {
+  const LoginResponseModel({
+    required accessToken,
+    required refreshToken,
+  }) : super(accessToken: '', refreshToken: '');
 
-  const LoginResponseModel({required super.accessToken, required super.refreshToken});
+  LoginResponseModel copyWith({
+    String? accessToken,
+    String? refreshToken,
+  }) {
+    return LoginResponseModel(
+      accessToken: accessToken ?? this.accessToken,
+      refreshToken: refreshToken ?? this.refreshToken,
+    );
+  }
 
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'accessToken': accessToken,
+      'refreshToken': refreshToken,
+    };
+  }
+
+  factory LoginResponseModel.fromMap(Map<String, dynamic> map) {
+    return LoginResponseModel(
+      accessToken: map['accessToken'] as String?,
+      refreshToken: map['refreshToken'] as String?,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory LoginResponseModel.fromJson(String source) =>
+      LoginResponseModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() =>
+      'LoginResponseModel(accessToken: $accessToken, refreshToken: $refreshToken)';
+
+  @override
+  bool operator ==(covariant LoginResponseModel other) {
+    if (identical(this, other)) return true;
+
+    return other.accessToken == accessToken &&
+        other.refreshToken == refreshToken;
+  }
+
+  @override
+  int get hashCode => accessToken.hashCode ^ refreshToken.hashCode;
 }

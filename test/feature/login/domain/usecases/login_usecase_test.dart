@@ -13,7 +13,7 @@ void main() {
 
   setUp(() {
     mockLoginRepository = MockLoginRepository();
-    usecase = LoginUseCase(mockLoginRepository);
+    usecase = LoginUseCase(loginRepostiory: mockLoginRepository);
   });
 
   const tLoginResponse = LoginResponseModel(
@@ -25,7 +25,7 @@ void main() {
         .thenAnswer((_) async => const Right(tLoginResponse));
     //act
     // final result =
-        await usecase(const LoginRequest(email: 'email', password: 'password'));
+    await usecase(const LoginRequest(email: 'email', password: 'password'));
     //assert
     //  expect(result, tLoginResponse);
     verify(mockLoginRepository.login());

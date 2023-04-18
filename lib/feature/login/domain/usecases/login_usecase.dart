@@ -11,10 +11,10 @@ import '../repository/login_repository.dart';
 class LoginUseCase extends UseCase<LoginResponse, LoginRequest> {
   final LoginRepostiory loginRepostiory;
 
-  LoginUseCase(this.loginRepostiory);
+  LoginUseCase({required this.loginRepostiory});
   @override
-  Future<Either<Failure, LoginResponse>>? call(LoginRequest params) {
-    return loginRepostiory.login();
+  Future<Either<Failure, LoginResponse>>? call(LoginRequest? params) async {
+    return await loginRepostiory.login()!;
   }
 }
 
