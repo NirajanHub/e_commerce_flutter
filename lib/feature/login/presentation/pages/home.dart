@@ -37,7 +37,18 @@ class Home extends StatelessWidget {
             child: Column(
               children: [
                 AppBar(
-                  title: const Text('Search'),
+                  backgroundColor: Colors.transparent,
+                  leading: Image.network('https://picsum.photos/30?image=1'),
+                  title: TextField(
+                    decoration: InputDecoration(
+                        hintText: 'Search',
+                        suffixIcon:
+                            Image.network('https://picsum.photos/20?image=1')),
+                  ),
+                  actions: [
+                    Image.network('https://picsum.photos/20?image=1'),
+                    Image.network('https://picsum.photos/20?image=1'),
+                  ],
                 ),
               ],
             ),
