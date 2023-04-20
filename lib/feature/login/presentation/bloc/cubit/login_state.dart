@@ -14,6 +14,8 @@ class InitialState extends LoginState {
 
 class LoadingState extends LoginState {}
 
+class EmptyState extends LoginState {}
+
 class AuthState extends LoginState {
   const AuthState({required this.login});
 

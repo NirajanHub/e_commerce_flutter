@@ -21,8 +21,7 @@ void main() {
     loginRequest = const LoginRequest(email: 'email', password: 'password');
     //loginRepostiory = MockLoginRepository();
     mockLoginUseCase = MockLoginUseCase();
-    loginCubit =
-        LoginCubit(loginUseCase: mockLoginUseCase, loginRequest: loginRequest);
+    loginCubit = LoginCubit(loginUseCase: mockLoginUseCase);
   });
 
   group('login user with right credential , should return Loading Loaded', () {
@@ -44,7 +43,7 @@ void main() {
         expectLater(loginCubit.stream, emitsInOrder(expected));
 
         //act
-        loginCubit.login();
+        loginCubit.login(loginRequest);
       },
     );
 
@@ -57,7 +56,7 @@ void main() {
         final expected = [const ErrorState(message: 'ServerException')];
         expectLater(loginCubit.stream, emitsInOrder(expected));
         //act
-        loginCubit.login();
+        loginCubit.login(loginRequest);
       },
     );
     test(
@@ -73,7 +72,7 @@ void main() {
         ];
         expectLater(loginCubit.stream, emitsInOrder(expected));
         //act
-        loginCubit.login();
+        loginCubit.login(loginRequest);
       },
     );
   });

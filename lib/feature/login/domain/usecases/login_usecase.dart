@@ -14,6 +14,23 @@ class LoginUseCase extends UseCase<LoginResponse, LoginRequest> {
   LoginUseCase({required this.loginRepostiory});
   @override
   Future<Either<Failure, LoginResponse>>? call(LoginRequest? params) async {
+    
+    //   bool isEmailValid = LoginValidation.emailValidation(params!.email);
+    //   bool isPasswordValid = LoginValidation.passwordValidation(params.password);
+    //   if (isEmailValid && isPasswordValid) {
+    //     return await loginRepostiory.login()!;
+    //   } else if (!isEmailValid) {
+    //     return const Left(FailureWithMessage(message: 'Insert a valid email'));
+    //   } else if (!isPasswordValid) {
+    //     return const Left(FailureWithMessage(
+    //         message:
+    //             '''Password should be at least eight characters with one uppercase,
+    //             one lowercase and one special character'''));
+    //   } else {
+    //     return const Left(ServerFailure());
+    //   }
+    // }
+
     return await loginRepostiory.login()!;
   }
 }

@@ -12,6 +12,6 @@ void main() {
 
     //assert
     expect(result,
-        LoginResponseModel.fromJson(fixture('fake_login_response.json')));
+        LoginResponseModel.fromJson(fixtures('fake_login_response.json')));
   });
 }
