@@ -2,6 +2,8 @@ import 'package:e_commerce/feature/landing/home/data/data_source/home_data_sourc
 import 'package:e_commerce/feature/landing/home/data/repositories/home_repository_impl.dart';
 import 'package:e_commerce/feature/landing/home/domain/repositories/home_repository.dart';
 import 'package:e_commerce/feature/landing/home/domain/use_cases/get_carousel_image_use_case.dart';
+import 'package:e_commerce/feature/landing/home/domain/use_cases/get_home_menu_model_use_case.dart';
+import 'package:e_commerce/feature/landing/home/domain/use_cases/get_home_page_data_use_case.dart';
 import 'package:e_commerce/feature/landing/home/presentation/bloc/cubit/home_cubit.dart';
 import 'package:e_commerce/feature/login/data/data_source/login_datasource.dart';
 import 'package:e_commerce/feature/login/data/repositories/login_repository_impl.dart';
@@ -30,11 +32,17 @@ Future<void> init() async {
   //!Features - Home Trivia
 
 //Bloc
-  sl.registerFactory(() => HomeCubit(getCarouselUseCase: sl()));
+  sl.registerFactory(() => HomeCubit(
+      getHomePageLoadedUseCase: sl(),
+      getCarouselUseCase: sl(),
+      getHomeMenuModelUseCase: sl()));
 
   //Use Cases
   sl.registerLazySingleton(
       () => GetCarouselImagesUseCase(homeRepository: sl()));
+  sl.registerLazySingleton(() => GetHomeMenuModelUseCase(homeRepository: sl()));
+  sl.registerLazySingleton(
+      () => GetHomePageLoadedUseCase(homeRepository: sl()));
 
   //Repository
   sl.registerLazySingleton<HomeRepository>(

@@ -16,9 +16,23 @@ class CarouselImagesLoaded extends HomeState {
   List<Object> get props => [carouselImages];
 }
 
-class CarouselImagesLoading extends HomeState {}
+class LoadingState extends HomeState {}
 
-class PageLoadingCompleted extends HomeState {}
+class HomeMenuLoaded extends HomeState {
+  const HomeMenuLoaded({required this.homeMenuModel});
+  final List<HomeMenusModel> homeMenuModel;
+  @override
+  List<List<HomeMenusModel>> get props => [homeMenuModel];
+}
+
+class HomePageLoaded extends HomeState {
+  final List<String> carouselImages;
+  final List<HomeMenusModel> homeMenuModel;
+  const HomePageLoaded(
+      {required this.carouselImages, required this.homeMenuModel});
+  @override
+  List<Object> get props => [carouselImages, homeMenuModel];
+}
 
 class ErrorState extends HomeState {
   const ErrorState({required this.message});

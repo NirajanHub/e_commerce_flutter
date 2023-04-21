@@ -3,10 +3,11 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-class CarouselImagesModel {
-  final List<String> images;
-  CarouselImagesModel({
-    required this.images,
+import 'package:e_commerce/feature/landing/home/domain/entities/carousel_images.dart';
+
+class CarouselImagesModel extends CarouselImagesEntity {
+  const CarouselImagesModel({
+    required super.images,
   });
 
   CarouselImagesModel copyWith({
@@ -36,7 +37,7 @@ class CarouselImagesModel {
       CarouselImagesModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'CarouselImages(images: $images)';
+  String toString() => 'CarouselImagesModel(images: $images)';
 
   @override
   bool operator ==(covariant CarouselImagesModel other) {
